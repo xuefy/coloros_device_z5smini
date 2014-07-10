@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:left="260.0px" android:top="87.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_14" />
+    <item android:left="347.0px" android:top="87.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_15" />
+    <item android:left="434.0px" android:top="87.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_16" />
+    <item android:left="174.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_23" />
+    <item android:left="260.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_24" />
+    <item android:left="347.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_25" />
+    <item android:left="434.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_26" />
+    <item android:left="521.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_27" />
+    <item android:left="608.0px" android:top="174.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_28" />
+    <item android:left="87.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_32" />
+    <item android:left="174.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_33" />
+    <item android:left="260.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_34" />
+    <item android:left="347.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_35" />
+    <item android:left="434.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_36" />
+    <item android:left="521.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_37" />
+    <item android:left="608.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_38" />
+    <item android:left="694.0px" android:top="260.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_39" />
+    <item android:left="87.0px" android:top="347.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_42" />
+    <item android:left="174.0px" android:top="347.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_43" />
+    <item android:left="608.0px" android:top="347.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_48" />
+    <item android:left="694.0px" android:top="347.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_49" />
+    <item android:left="0.0px" android:top="434.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_51" />
+    <item android:left="87.0px" android:top="434.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_52" />
+    <item android:left="174.0px" android:top="434.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_53" />
+    <item android:left="608.0px" android:top="434.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_58" />
+    <item android:left="694.0px" android:top="434.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_59" />
+    <item android:left="0.0px" android:top="521.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_61" />
+    <item android:left="87.0px" android:top="521.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_62" />
+    <item android:left="174.0px" android:top="521.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_63" />
+    <item android:left="694.0px" android:top="521.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_69" />
+    <item android:left="781.0px" android:top="521.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_70" />
+    <item android:left="0.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_71" />
+    <item android:left="87.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_72" />
+    <item android:left="174.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_73" />
+    <item android:left="260.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_74" />
+    <item android:left="608.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_78" />
+    <item android:left="694.0px" android:top="608.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_79" />
+    <item android:left="87.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_82" />
+    <item android:left="174.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_83" />
+    <item android:left="260.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_84" />
+    <item android:left="347.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_85" />
+    <item android:left="521.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_87" />
+    <item android:left="608.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_88" />
+    <item android:left="694.0px" android:top="694.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_89" />
+    <item android:left="87.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_92" />
+    <item android:left="174.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_93" />
+    <item android:left="260.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_94" />
+    <item android:left="347.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_95" />
+    <item android:left="434.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_96" />
+    <item android:left="521.0px" android:top="781.0px" drawable="drawable-xxhdpi/lockscreen_unlock_fire21_97" />
+</layer-list>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/wheel_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/clock_no_date_bg" />
+    <ImageView android:id="@id/nodate_wheel5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="85.0dip" android:layout_marginTop="48.0dip" android:src="@drawable/clock_no_date_wheel5" />
+    <ImageView android:id="@id/nodate_wheel4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="49.0dip" android:layout_marginTop="54.0dip" android:src="@drawable/clock_no_date_wheel4" />
+    <ImageView android:id="@id/nodate_wheel33" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="73.0dip" android:layout_marginTop="67.0dip" android:src="@drawable/clock_no_date_wheel33" />
+    <ImageView android:id="@id/nodate_wheel3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="73.0dip" android:layout_marginTop="66.0dip" android:src="@drawable/clock_no_date_wheel3" />
+    <ImageView android:id="@id/nodate_wheel2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="53.0dip" android:layout_marginTop="83.0dip" android:src="@drawable/clock_no_date_wheel2" />
+    <ImageView android:id="@id/nodate_wheel1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="70.0dip" android:layout_marginTop="91.0dip" android:src="@drawable/clock_no_date_wheel1" />
+</FrameLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.internal.policy.impl.keyguard.KeyguardHostView androidprv:gravity="center_horizontal" androidprv:orientation="vertical" androidprv:id="@id/keyguard_host_view" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:androidprv="http://schemas.android.com/apk/res/android">
+    <com.android.internal.policy.impl.keyguard.SlidingChallengeLayout androidprv:id="@id/sliding_layout" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent">
+        <FrameLayout androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent" androidprv:layout_childType="widgets">
+            <include androidprv:layout_gravity="center" androidprv:id="@id/app_widget_container" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent" layout="@layout/keyguard_widget_pager" />
+        </FrameLayout>
+        <View androidprv:background="#99000000" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent" androidprv:layout_childType="scrim" />
+    </com.android.internal.policy.impl.keyguard.SlidingChallengeLayout>
+</com.android.internal.policy.impl.keyguard.KeyguardHostView>

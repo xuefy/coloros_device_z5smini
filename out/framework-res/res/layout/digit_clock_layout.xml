@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/digit_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="42.0dip" android:src="@drawable/digit_bg" />
+    <LinearLayout android:gravity="center" android:id="@id/hour_all" android:background="@drawable/digit_rotate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+        <ImageView android:id="@id/hour_all_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/all_1" />
+        <ImageView android:id="@id/hour_all_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/all_2" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@id/hour_half" android:background="@drawable/digit_rotate" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+        <ImageView android:id="@id/hour_half_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/half_1" />
+        <ImageView android:id="@id/hour_half_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/half_2" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@id/minute_all" android:background="@drawable/digit_rotate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="136.0dip">
+        <ImageView android:id="@id/minute_all_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/all_1" />
+        <ImageView android:id="@id/minute_all_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/all_2" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@id/minute_half" android:background="@drawable/digit_rotate" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="136.0dip">
+        <ImageView android:id="@id/minute_half_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/half_1" />
+        <ImageView android:id="@id/minute_half_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/half_5" />
+    </LinearLayout>
+    <ImageView android:id="@id/digit_front_hour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="63.0dip" android:src="@drawable/digit_front" />
+    <ImageView android:id="@id/digit_front_minute" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="136.0dip" android:layout_marginTop="63.0dip" android:src="@drawable/digit_front" />
+    <TextView android:textSize="10.0dip" android:textColor="@color/white" android:id="@id/week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="14.0dip" android:layout_marginTop="128.0dip" />
+    <TextView android:textSize="10.0dip" android:textColor="@color/white" android:gravity="center" android:id="@id/am_pm" android:background="@drawable/ampm_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="150.0dip" android:layout_marginTop="127.0dip" />
+    <TextView android:textSize="10.0dip" android:textColor="@color/white" android:id="@id/date" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="195.0dip" android:layout_marginTop="128.0dip" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="137.0dip" android:src="@drawable/digit_widget_divider" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/digit_widget_divider" />
+</FrameLayout>

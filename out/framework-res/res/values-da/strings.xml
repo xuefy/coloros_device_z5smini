@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_upgrading_title">ColorOS opgraderes</string>
+    <string name="android_upgrading_apk">Optimerer app %1$d ud af %2$d</string>
+    <string name="android_upgrading_starting_apps">Sådan åbner du dine apps</string>
+    <string name="android_upgrading_complete">Gennemfører start</string>
+</resources>

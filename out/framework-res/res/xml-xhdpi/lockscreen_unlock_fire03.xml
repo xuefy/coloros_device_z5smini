@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:left="235.0px" android:top="549.0px" drawable="drawable-xhdpi/lockscreen_unlock_fire03_74" />
+    <item android:left="314.0px" android:top="549.0px" drawable="drawable-xhdpi/lockscreen_unlock_fire03_75" />
+    <item android:left="392.0px" android:top="549.0px" drawable="drawable-xhdpi/lockscreen_unlock_fire03_76" />
+    <item android:left="235.0px" android:top="627.0px" drawable="drawable-xhdpi/lockscreen_unlock_fire03_84" />
+</layer-list>

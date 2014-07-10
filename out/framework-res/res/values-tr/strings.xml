@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_upgrading_title">ColorOS yeni sürüme geçiriliyor</string>
+    <string name="android_upgrading_apk">%1$d/%2$d uygulama optimize ediliyor</string>
+    <string name="android_upgrading_starting_apps">Uygulamalar başlatılıyor</string>
+    <string name="android_upgrading_complete">Açılış tamamlanıyor</string>
+</resources>

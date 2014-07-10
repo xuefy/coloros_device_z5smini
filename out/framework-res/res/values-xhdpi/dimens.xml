@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="keyguard_lockscreen_fire_offset_x">-111.0px</dimen>
+    <dimen name="keyguard_lockscreen_fire_offset_y">-61.0px</dimen>
+</resources>

@@ -1,0 +1,578 @@
+ AndroidManifest.xml                                |    5 -
+ res/xml/cdma_call_options.xml                      |    9 +
+ res/xml/cdma_options.xml                           |    6 +
+ smali/com/android/phone/PhoneApp.smali             |  100 +++++++
+ .../phone/SimNetworkStateList$SimNetwork.smali     |   99 +++++++
+ smali/com/android/phone/SimNetworkStateList.smali  |  287 ++++++++++++++++++++
+ .../Use2GOnlyCheckBoxPreference$MyHandler.smali    |    2 +
+ 7 files changed, 503 insertions(+), 5 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index d043dcb..b92f9cd 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -426,10 +426,5 @@
+                 <action android:name="android.intent.action.cancelDialog"/>
+             </intent-filter>
+         </activity>
+-        <service android:name="BluetoothPhoneService">
+-            <intent-filter>
+-                <action android:name="android.bluetooth.IBluetoothHeadsetPhone"/>
+-            </intent-filter>
+-        </service>
+     </application>
+ </manifest>
+diff --git a/res/xml/cdma_call_options.xml b/res/xml/cdma_call_options.xml
+index 631bf98..371a158 100644
+--- a/res/xml/cdma_call_options.xml
++++ b/res/xml/cdma_call_options.xml
+@@ -3,4 +3,13 @@
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:settings="http://schemas.android.com/apk/res/com.android.phone">
+     <com.android.phone.CdmaVoicePrivacyCheckBoxPreference android:persistent="false" android:title="@string/voice_privacy" android:key="button_voice_privacy_key" android:summary="@string/voice_privacy_summary" />
++    <PreferenceScreen android:persistent="false" android:title="@string/labelCF" android:key="button_cf_expand_key">
++        <intent android:targetPackage="com.android.phone" android:action="android.intent.action.MAIN" android:targetClass="com.android.phone.GsmUmtsCallForwardOptions" />
++    </PreferenceScreen>
++    <PreferenceScreen android:persistent="false" android:title="@string/oppo_lable_call_barring" android:key="button_cb_expand_key">
++        <intent android:targetPackage="com.android.phone" android:action="android.intent.action.MAIN" android:targetClass="com.android.phone.OppoCallBarring" />
++    </PreferenceScreen>
++    <PreferenceScreen android:persistent="false" android:title="@string/additional_gsm_call_settings" android:key="button_more_expand_key">
++        <intent android:targetPackage="com.android.phone" android:action="android.intent.action.MAIN" android:targetClass="com.android.phone.GsmUmtsAdditionalCallOptions" />
++    </PreferenceScreen>
+ </PreferenceScreen>
+\ No newline at end of file
+diff --git a/res/xml/cdma_options.xml b/res/xml/cdma_options.xml
+index 19ea1d5..9eced81 100644
+--- a/res/xml/cdma_options.xml
++++ b/res/xml/cdma_options.xml
+@@ -3,4 +3,10 @@
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:settings="http://schemas.android.com/apk/res/com.android.phone">
+     <com.android.phone.CdmaRoamingListPreference android:entries="@array/cdma_system_select_choices" android:title="@string/cdma_system_select_title" android:key="cdma_roaming_mode_key" android:summary="@string/cdma_system_select_summary" android:dialogTitle="@string/cdma_system_select_dialogtitle" android:entryValues="@array/cdma_system_select_values" />
++    <PreferenceScreen android:persistent="false" android:title="@string/apn_settings" android:key="button_apn_key">
++        <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.ApnSettings" />
++    </PreferenceScreen>
++    <PreferenceScreen android:persistent="false" android:title="@string/networks" android:key="button_carrier_sel_key" android:summary="@string/sum_carrier_select">
++        <intent android:targetPackage="com.android.phone" android:action="android.intent.action.MAIN" android:targetClass="com.android.phone.NetworkSetting" />
++    </PreferenceScreen>
+ </PreferenceScreen>
+\ No newline at end of file
+diff --git a/smali/com/android/phone/PhoneApp.smali b/smali/com/android/phone/PhoneApp.smali
+index 5fd20b4..1848555 100644
+--- a/smali/com/android/phone/PhoneApp.smali
++++ b/smali/com/android/phone/PhoneApp.smali
+@@ -6683,3 +6683,103 @@
+ 
+     throw v0
+ .end method
++
++.method static setAutomaticNetworkMode()V
++    .locals 10
++
++    .prologue
++    const/4 v9, 0x5
++
++    const/4 v8, 0x0
++
++    invoke-static {}, Lcom/android/phone/SimNetworkStateList;->getInstance()Lcom/android/phone/SimNetworkStateList;
++
++    move-result-object v3
++
++    .local v3, "simNetworkStateList":Lcom/android/phone/SimNetworkStateList;
++    invoke-static {}, Landroid/telephony/TelephonyManager;->getDefault()Landroid/telephony/TelephonyManager;
++
++    move-result-object v5
++
++    .local v5, "tm":Landroid/telephony/TelephonyManager;
++    invoke-virtual {v5}, Landroid/telephony/TelephonyManager;->getSubscriberId()Ljava/lang/String;
++
++    move-result-object v0
++
++    .local v0, "imsi":Ljava/lang/String;
++    const/4 v1, 0x7
++
++    .local v1, "mode":I
++    const/4 v2, 0x0
++
++    .local v2, "prop":I
++    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v6
++
++    if-nez v6, :cond_0
++
++    invoke-virtual {v0}, Ljava/lang/String;->length()I
++
++    move-result v6
++
++    if-lt v6, v9, :cond_0
++
++    invoke-virtual {v0, v8, v9}, Ljava/lang/String;->substring(II)Ljava/lang/String;
++
++    move-result-object v4
++
++    .local v4, "str":Ljava/lang/String;
++    invoke-virtual {v3, v4}, Lcom/android/phone/SimNetworkStateList;->getNetworkModIdByCarrierId(Ljava/lang/String;)I
++
++    move-result v1
++
++    .end local v4    # "str":Ljava/lang/String;
++    :cond_0
++    const/16 v6, 0x10
++
++    if-ne v1, v6, :cond_1
++
++    const/4 v1, 0x3
++
++    const/4 v2, 0x2
++
++    :cond_1
++    invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
++
++    move-result-object v0
++
++    iget-object v6, v0, Lcom/android/phone/PhoneApp;->phone:Lcom/android/internal/telephony/Phone;
++
++    invoke-interface {v6}, Lcom/android/internal/telephony/Phone;->getContext()Landroid/content/Context;
++
++    move-result-object v6
++
++    invoke-virtual {v6}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
++
++    move-result-object v6
++
++    const-string v7, "preferred_network_mode"
++
++    invoke-static {v6, v7, v1}, Landroid/provider/Settings$Global;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
++
++    const-string v6, "persist.radio.tdscdma_present"
++
++    invoke-static {v2}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
++
++    move-result-object v7
++
++    invoke-static {v6, v7}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
++
++    move-result-object v0
++
++    iget-object v6, v0, Lcom/android/phone/PhoneApp;->phone:Lcom/android/internal/telephony/Phone;
++
++    const/4 v7, 0x0
++
++    invoke-interface {v6, v1, v7}, Lcom/android/internal/telephony/Phone;->setPreferredNetworkType(ILandroid/os/Message;)V
++
++    return-void
++.end method
+diff --git a/smali/com/android/phone/SimNetworkStateList$SimNetwork.smali b/smali/com/android/phone/SimNetworkStateList$SimNetwork.smali
+new file mode 100644
+index 0000000..0259d85
+--- /dev/null
++++ b/smali/com/android/phone/SimNetworkStateList$SimNetwork.smali
+@@ -0,0 +1,99 @@
++.class public Lcom/android/phone/SimNetworkStateList$SimNetwork;
++.super Ljava/lang/Object;
++.source "SimNetworkStateList.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingClass;
++    value = Lcom/android/phone/SimNetworkStateList;
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x1
++    name = "SimNetwork"
++.end annotation
++
++
++# instance fields
++.field private mCarrierId:Ljava/lang/String;
++
++.field private mNetworkModeId:I
++
++.field private mResourceId:I
++
++.field final synthetic this$0:Lcom/android/phone/SimNetworkStateList;
++
++
++# direct methods
++.method public constructor <init>(Lcom/android/phone/SimNetworkStateList;)V
++    .locals 0
++
++    .prologue
++    iput-object p1, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->this$0:Lcom/android/phone/SimNetworkStateList;
++
++    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method static synthetic access$000(Lcom/android/phone/SimNetworkStateList$SimNetwork;)Ljava/lang/String;
++    .locals 1
++    .param p0, "x0"    # Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .prologue
++    iget-object v0, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mCarrierId:Ljava/lang/String;
++
++    return-object v0
++.end method
++
++.method static synthetic access$100(Lcom/android/phone/SimNetworkStateList$SimNetwork;)I
++    .locals 1
++    .param p0, "x0"    # Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .prologue
++    iget v0, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mNetworkModeId:I
++
++    return v0
++.end method
++
++.method static synthetic access$200(Lcom/android/phone/SimNetworkStateList$SimNetwork;)I
++    .locals 1
++    .param p0, "x0"    # Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .prologue
++    iget v0, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mResourceId:I
++
++    return v0
++.end method
++
++
++# virtual methods
++.method public setmCarrierId(Ljava/lang/String;)V
++    .locals 0
++    .param p1, "mCarrierId"    # Ljava/lang/String;
++
++    .prologue
++    iput-object p1, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mCarrierId:Ljava/lang/String;
++
++    return-void
++.end method
++
++.method public setmNetworkModeId(I)V
++    .locals 0
++    .param p1, "mNetworkModeId"    # I
++
++    .prologue
++    iput p1, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mNetworkModeId:I
++
++    return-void
++.end method
++
++.method public setmResourceId(I)V
++    .locals 0
++    .param p1, "mResourceId"    # I
++
++    .prologue
++    iput p1, p0, Lcom/android/phone/SimNetworkStateList$SimNetwork;->mResourceId:I
++
++    return-void
++.end method
+diff --git a/smali/com/android/phone/SimNetworkStateList.smali b/smali/com/android/phone/SimNetworkStateList.smali
+new file mode 100644
+index 0000000..9a6f28b
+--- /dev/null
++++ b/smali/com/android/phone/SimNetworkStateList.smali
+@@ -0,0 +1,287 @@
++.class public Lcom/android/phone/SimNetworkStateList;
++.super Ljava/lang/Object;
++.source "SimNetworkStateList.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/MemberClasses;
++    value = {
++        Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    }
++.end annotation
++
++
++# static fields
++.field private static sMe:Lcom/android/phone/SimNetworkStateList;
++
++
++# instance fields
++.field private mSimNetworkList:Ljava/util/ArrayList;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "Ljava/util/ArrayList",
++            "<",
++            "Lcom/android/phone/SimNetworkStateList$SimNetwork;",
++            ">;"
++        }
++    .end annotation
++.end field
++
++
++# direct methods
++.method private constructor <init>()V
++    .locals 6
++
++    .prologue
++    const v5, 0x7f0d0368
++
++    const/4 v4, 0x7
++
++    const/4 v3, 0x3
++
++    const v2, 0x7f0d0367
++
++    const/16 v1, 0x10
++
++    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
++
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
++
++    iput-object v0, p0, Lcom/android/phone/SimNetworkStateList;->mSimNetworkList:Ljava/util/ArrayList;
++
++    const-string v0, "46000"
++
++    invoke-virtual {p0, v0, v1, v2}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46002"
++
++    invoke-virtual {p0, v0, v1, v2}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46007"
++
++    invoke-virtual {p0, v0, v1, v2}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46001"
++
++    invoke-virtual {p0, v0, v3, v5}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46006"
++
++    invoke-virtual {p0, v0, v3, v5}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46003"
++
++    const v1, 0x7f0d0369
++
++    invoke-virtual {p0, v0, v4, v1}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    const-string v0, "46005"
++
++    const v1, 0x7f0d0369
++
++    invoke-virtual {p0, v0, v4, v1}, Lcom/android/phone/SimNetworkStateList;->add(Ljava/lang/String;II)V
++
++    return-void
++.end method
++
++.method public static getInstance()Lcom/android/phone/SimNetworkStateList;
++    .locals 1
++
++    .prologue
++    sget-object v0, Lcom/android/phone/SimNetworkStateList;->sMe:Lcom/android/phone/SimNetworkStateList;
++
++    if-nez v0, :cond_0
++
++    new-instance v0, Lcom/android/phone/SimNetworkStateList;
++
++    invoke-direct {v0}, Lcom/android/phone/SimNetworkStateList;-><init>()V
++
++    sput-object v0, Lcom/android/phone/SimNetworkStateList;->sMe:Lcom/android/phone/SimNetworkStateList;
++
++    :cond_0
++    sget-object v0, Lcom/android/phone/SimNetworkStateList;->sMe:Lcom/android/phone/SimNetworkStateList;
++
++    return-object v0
++.end method
++
++
++# virtual methods
++.method public add(Ljava/lang/String;II)V
++    .locals 2
++    .param p1, "carrierId"    # Ljava/lang/String;
++    .param p2, "networkModeId"    # I
++    .param p3, "resId"    # I
++
++    .prologue
++    new-instance v0, Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    invoke-direct {v0, p0}, Lcom/android/phone/SimNetworkStateList$SimNetwork;-><init>(Lcom/android/phone/SimNetworkStateList;)V
++
++    .local v0, "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    invoke-virtual {v0, p1}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->setmCarrierId(Ljava/lang/String;)V
++
++    invoke-virtual {v0, p2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->setmNetworkModeId(I)V
++
++    invoke-virtual {v0, p3}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->setmResourceId(I)V
++
++    iget-object v1, p0, Lcom/android/phone/SimNetworkStateList;->mSimNetworkList:Ljava/util/ArrayList;
++
++    invoke-virtual {v1, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
++
++    return-void
++.end method
++
++.method public getNetworkModIdByCarrierId(Ljava/lang/String;)I
++    .locals 4
++    .param p1, "carrierId"    # Ljava/lang/String;
++
++    .prologue
++    const/4 v1, 0x7
++
++    .local v1, "networkModeId":I
++    iget-object v3, p0, Lcom/android/phone/SimNetworkStateList;->mSimNetworkList:Ljava/util/ArrayList;
++
++    invoke-virtual {v3}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
++
++    move-result-object v0
++
++    .local v0, "i$":Ljava/util/Iterator;
++    :cond_0
++    :goto_0
++    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v3
++
++    if-eqz v3, :cond_1
++
++    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .local v2, "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    # getter for: Lcom/android/phone/SimNetworkStateList$SimNetwork;->mCarrierId:Ljava/lang/String;
++    invoke-static {v2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->access$000(Lcom/android/phone/SimNetworkStateList$SimNetwork;)Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v3
++
++    if-eqz v3, :cond_0
++
++    # getter for: Lcom/android/phone/SimNetworkStateList$SimNetwork;->mNetworkModeId:I
++    invoke-static {v2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->access$100(Lcom/android/phone/SimNetworkStateList$SimNetwork;)I
++
++    move-result v1
++
++    goto :goto_0
++
++    .end local v2    # "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    :cond_1
++    return v1
++.end method
++
++.method public getResIdByCarrierId(Ljava/lang/String;)I
++    .locals 4
++    .param p1, "carrierId"    # Ljava/lang/String;
++
++    .prologue
++    const v1, 0x7f0d036a
++
++    .local v1, "resId":I
++    iget-object v3, p0, Lcom/android/phone/SimNetworkStateList;->mSimNetworkList:Ljava/util/ArrayList;
++
++    invoke-virtual {v3}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
++
++    move-result-object v0
++
++    .local v0, "i$":Ljava/util/Iterator;
++    :cond_0
++    :goto_0
++    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v3
++
++    if-eqz v3, :cond_1
++
++    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .local v2, "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    # getter for: Lcom/android/phone/SimNetworkStateList$SimNetwork;->mCarrierId:Ljava/lang/String;
++    invoke-static {v2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->access$000(Lcom/android/phone/SimNetworkStateList$SimNetwork;)Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v3
++
++    if-eqz v3, :cond_0
++
++    # getter for: Lcom/android/phone/SimNetworkStateList$SimNetwork;->mResourceId:I
++    invoke-static {v2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->access$200(Lcom/android/phone/SimNetworkStateList$SimNetwork;)I
++
++    move-result v1
++
++    goto :goto_0
++
++    .end local v2    # "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    :cond_1
++    return v1
++.end method
++
++.method public isCarrierIdInArrayList(Ljava/lang/String;)Z
++    .locals 4
++    .param p1, "carrierId"    # Ljava/lang/String;
++
++    .prologue
++    const/4 v0, 0x0
++
++    .local v0, "bIn":Z
++    iget-object v3, p0, Lcom/android/phone/SimNetworkStateList;->mSimNetworkList:Ljava/util/ArrayList;
++
++    invoke-virtual {v3}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
++
++    move-result-object v1
++
++    .local v1, "i$":Ljava/util/Iterator;
++    :cond_0
++    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v3
++
++    if-eqz v3, :cond_1
++
++    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Lcom/android/phone/SimNetworkStateList$SimNetwork;
++
++    .local v2, "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    # getter for: Lcom/android/phone/SimNetworkStateList$SimNetwork;->mCarrierId:Ljava/lang/String;
++    invoke-static {v2}, Lcom/android/phone/SimNetworkStateList$SimNetwork;->access$000(Lcom/android/phone/SimNetworkStateList$SimNetwork;)Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-virtual {v3, p1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
++
++    move-result v3
++
++    if-eqz v3, :cond_0
++
++    const/4 v0, 0x1
++
++    .end local v2    # "simNetwork":Lcom/android/phone/SimNetworkStateList$SimNetwork;
++    :cond_1
++    return v0
++.end method
+diff --git a/smali/com/android/phone/Use2GOnlyCheckBoxPreference$MyHandler.smali b/smali/com/android/phone/Use2GOnlyCheckBoxPreference$MyHandler.smali
+index 7172aa6..35b63bf 100644
+--- a/smali/com/android/phone/Use2GOnlyCheckBoxPreference$MyHandler.smali
++++ b/smali/com/android/phone/Use2GOnlyCheckBoxPreference$MyHandler.smali
+@@ -349,6 +349,8 @@
+ 
+     .line 318
+     :goto_0
++    invoke-static {}, Lcom/android/phone/PhoneApp;->setAutomaticNetworkMode()V
++
+     return-void
+ 
+     .line 283

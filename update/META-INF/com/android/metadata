@@ -1,0 +1,3 @@
+post-build=nubia/NX403A/NX403A:4.2.2/JDQ39/eng.nubia.20140212.094432:user/release-keys
+post-timestamp=1392169523
+pre-device=NX403A

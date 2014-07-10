@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@drawable/musicwidget_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.internal.policy.impl.keyguard.GalleryFlow android:gravity="center_horizontal" android:id="@id/album" android:layout_width="wrap_content" android:layout_height="fill_parent" android:spacing="-45.0dip" android:layout_centerHorizontal="true" />
+    <LinearLayout android:id="@id/songinfo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerVertical="true">
+        <TextView android:textSize="14.0dip" android:gravity="center_horizontal" android:id="@id/artist" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="200.0dip" android:singleLine="true" />
+    </LinearLayout>
+    <TextView android:textSize="14.0dip" android:gravity="center_horizontal" android:id="@id/songname" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" android:layout_above="@id/songinfo" />
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.internal.policy.impl.keyguard.KeyguardWidgetFrame androidprv:gravity="center_horizontal" androidprv:id="@id/keyguard_notification_view" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:androidprv="http://schemas.android.com/apk/res/android">
+    <com.android.internal.policy.impl.keyguard.KeyguardNotificationView androidprv:gravity="top|center" androidprv:orientation="vertical" androidprv:id="@id/keyguard_notification_view_face_palm" androidprv:layout_width="fill_parent" androidprv:layout_height="600.0dip" androidprv:contentDescription="@string/keyguard_accessibility_notification">
+        <LinearLayout androidprv:layout_gravity="top|center" androidprv:orientation="vertical" androidprv:focusable="true" androidprv:layout_width="fill_parent" androidprv:layout_height="wrap_content">
+            <com.android.internal.policy.impl.keyguard.ClockView androidprv:layout_gravity="center" androidprv:id="@id/clock_view2" androidprv:paddingLeft="16.0dip" androidprv:paddingBottom="5.0dip" androidprv:layout_width="wrap_content" androidprv:layout_height="wrap_content">
+                <TextView androidprv:textAppearance="?textAppearanceSmall" androidprv:textSize="80.0dip" androidprv:textColor="#ffffffff" androidprv:ellipsize="none" androidprv:id="@id/clock_text" androidprv:layout_width="wrap_content" androidprv:layout_height="wrap_content" androidprv:singleLine="true" androidprv:drawablePadding="2.0dip" />
+                <TextView androidprv:textAppearance="?textAppearance" androidprv:textSize="20.0dip" androidprv:textColor="#ffffffff" androidprv:ellipsize="none" androidprv:id="@id/am_pm" androidprv:layout_width="wrap_content" androidprv:layout_height="wrap_content" androidprv:layout_marginLeft="8.0dip" androidprv:singleLine="true" androidprv:layout_toRightOf="@id/clock_text" androidprv:layout_alignBaseline="@id/clock_text" />
+            </com.android.internal.policy.impl.keyguard.ClockView>
+        </LinearLayout>
+        <include layout="@layout/keyguard_status_area" />
+        <include layout="@layout/keyguard_notification_area" />
+        <com.android.internal.policy.impl.keyguard.KeyguardSecurityContainer androidprv:id="@id/keyguard_security_container" androidprv:layout_width="wrap_content" androidprv:layout_height="350.0dip" androidprv:layout_childType="challenge">
+            <com.android.internal.policy.impl.keyguard.KeyguardSecurityViewFlipper androidprv:gravity="center" androidprv:id="@id/view_flipper_ext" androidprv:paddingLeft="@dimen/keyguard_security_view_margin" androidprv:paddingTop="@dimen/keyguard_security_view_margin" androidprv:paddingRight="@dimen/keyguard_security_view_margin" androidprv:paddingBottom="@dimen/keyguard_security_view_margin" androidprv:clipChildren="false" androidprv:clipToPadding="false" androidprv:layout_width="fill_parent" androidprv:layout_height="fill_parent" />
+        </com.android.internal.policy.impl.keyguard.KeyguardSecurityContainer>
+    </com.android.internal.policy.impl.keyguard.KeyguardNotificationView>
+</com.android.internal.policy.impl.keyguard.KeyguardWidgetFrame>

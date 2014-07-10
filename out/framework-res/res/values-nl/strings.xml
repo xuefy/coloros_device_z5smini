@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_upgrading_title">ColorOS wordt bijgewerkt</string>
+    <string name="android_upgrading_apk">App %1$d van %2$d optimaliseren</string>
+    <string name="android_upgrading_starting_apps">Apps starten</string>
+    <string name="android_upgrading_complete">Opstarten afronden</string>
+</resources>

@@ -1,0 +1,101 @@
+ .../providers/settings/DatabaseHelper.smali        |   80 +++++++++++++++-----
+ 1 file changed, 63 insertions(+), 17 deletions(-)
+
+diff --git a/smali/com/android/providers/settings/DatabaseHelper.smali b/smali/com/android/providers/settings/DatabaseHelper.smali
+index 69eac96..a46fd44 100644
+--- a/smali/com/android/providers/settings/DatabaseHelper.smali
++++ b/smali/com/android/providers/settings/DatabaseHelper.smali
+@@ -1693,23 +1693,6 @@
+     .line 2369
+     .local v3, "type":I
+     :goto_4
+-    const-string v6, "ro.telephony.default_network"
+-
+-    const/4 v7, 0x0
+-
+-    invoke-static {v6, v7}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+-
+-    move-result v3
+-
+-    .line 2373
+-    const-string v6, "preferred_network_mode"
+-
+-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+-
+-    move-result-object v7
+-
+-    invoke-direct {p0, v2, v6, v7}, Lcom/android/providers/settings/DatabaseHelper;->loadSetting(Landroid/database/sqlite/SQLiteStatement;Ljava/lang/String;Ljava/lang/Object;)V
+-
+     .line 2379
+     const-string v6, "data_roaming_2"
+ 
+@@ -1742,6 +1725,69 @@
+     const v5, 0x7f050025
+ 
+     invoke-direct {p0, v2, v4, v5}, Lcom/android/providers/settings/DatabaseHelper;->loadBooleanSetting(Landroid/database/sqlite/SQLiteStatement;Ljava/lang/String;I)V
++
++    const-string v4, "ro.telephony.default_network"
++
++    const/4 v5, 0x7
++
++    invoke-static {v4, v5}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
++
++    move-result v5
++
++    .line 2311
++    invoke-static {v5}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
++
++    move-result-object v4
++
++    .line 2312
++    invoke-static {}, Landroid/telephony/MSimTelephonyManager;->getDefault()Landroid/telephony/MSimTelephonyManager;
++
++    move-result-object v6
++
++    invoke-virtual {v6}, Landroid/telephony/MSimTelephonyManager;->isMultiSimEnabled()Z
++
++    move-result v6
++
++    if-eqz v6, :cond_1e2
++
++    .line 2313
++    new-instance v4, Ljava/lang/StringBuilder;
++
++    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object v4
++
++    const-string v6, ","
++
++    invoke-virtual {v4, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v4
++
++    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object v4
++
++    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v4
++
++    .line 2315
++    :cond_1e2
++    const-string v5, "preferred_network_mode"
++
++    invoke-direct {p0, v2, v5, v4}, Lcom/android/providers/settings/DatabaseHelper;->loadSetting(Landroid/database/sqlite/SQLiteStatement;Ljava/lang/String;Ljava/lang/Object;)V
++
++    const-string v4, "subscription_mode"
++
++    const/4 v5, 0x0
++
++    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v5
++
++    invoke-direct {p0, v2, v4, v5}, Lcom/android/providers/settings/DatabaseHelper;->loadSetting(Landroid/database/sqlite/SQLiteStatement;Ljava/lang/String;Ljava/lang/Object;)V
+     :try_end_0
+     .catchall {:try_start_0 .. :try_end_0} :catchall_0
+ 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permdesc_accessFineLocation">允许该应用通过全球定位系统 (GPS) 或网络位置信息源（例如基站和 WLAN）获取您的精确位置信息。您必须在设备上开启这些位置服务，应用才能获得位置信息。应用会使用此类服务确定您的位置，这可能会消耗更多电量。</string>
+    <string name="permdesc_accessCoarseLocation">允许该应用获取您的大致位置信息。这类位置信息来自于使用网络位置信息源（例如基站和 WLAN）的位置服务。您必须在设备上开启这些位置服务，应用才能获得位置信息。应用会使用此类服务确定您的大概位置。</string>
+    <string name="permlab_configureWifiDisplay">配置 WLAN 显示设备</string>
+    <string name="permdesc_configureWifiDisplay">允许应用配置并连接到 WLAN 显示设备。</string>
+    <string name="permlab_controlWifiDisplay">控制 WLAN 显示设备</string>
+    <string name="permdesc_controlWifiDisplay">允许应用控制 WLAN 显示设备的基础功能。</string>
+    <string name="permlab_accessWifiState">查看 WLAN 连接</string>
+    <string name="permdesc_accessWifiState">允许该应用查看 WLAN 网络的相关信息，例如是否启用了 WLAN 以及连接的 WLAN 设备的名称。</string>
+    <string name="permlab_changeWifiState">连接 WLAN 和断开连接</string>
+    <string name="permdesc_changeWifiState">允许该应用与 WLAN 接入点建立和断开连接，以及更改 WLAN 网络的设备配置。</string>
+    <string name="permlab_changeWifiMulticastState">允许接收 WLAN 多播</string>
+    <string name="permdesc_changeWifiMulticastState">允许该应用使用多播地址接收发送到 WLAN 网络上所有设备（而不仅仅是您的手机）的数据包。该操作的耗电量比非多播模式要大。</string>
+    <string name="ringtone_silent">静音</string>
+    <string name="wifi_available_sign_in">登录到 WLAN 网络</string>
+    <string name="wifi_watchdog_network_disabled">无法连接到 WLAN</string>
+    <string name="wifi_p2p_dialog_title">WLAN Direct</string>
+    <string name="wifi_p2p_turnon_message">启动 WLAN Direct。此操作将会关闭 WLAN 客户端/热点。</string>
+    <string name="wifi_p2p_failed_message">无法启动 WLAN Direct。</string>
+    <string name="wifi_p2p_enabled_notification_title">已启用 WLAN Direct</string>
+    <string name="decline">取消</string>
+    <string name="wifi_p2p_from_message">是否接受%1$s的连接邀请?</string>
+    <string name="wifi_p2p_frequency_conflict_message">手机连接到%1$s时会暂时断开与 WLAN 的连接。</string>
+    <string name="data_usage_wifi_limit_title">WLAN 数据网络已停用</string>
+    <string name="data_usage_wifi_limit_snoozed_title">超出了 WLAN 数据流量上限</string>
+</resources>

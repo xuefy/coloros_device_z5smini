@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_upgrading_title">Đang nâng cấp ColorOS</string>
+    <string name="android_upgrading_apk">Đang tối ưu hóa ứng dụng %1$d trong tổng số %2$d</string>
+    <string name="android_upgrading_starting_apps">Khởi động ứng dụng</string>
+    <string name="android_upgrading_complete">Hoàn tất khởi động</string>
+</resources>

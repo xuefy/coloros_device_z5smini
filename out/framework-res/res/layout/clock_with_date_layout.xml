@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/wheel_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/clock_with_date_bg" />
+    <ImageView android:id="@id/withdate_wheel4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="67.0dip" android:layout_marginTop="97.0dip" android:src="@drawable/clock_with_date_wheel4" />
+    <ImageView android:id="@id/withdate_wheel3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="63.0dip" android:layout_marginTop="111.0dip" android:src="@drawable/clock_with_date_wheel3" />
+    <ImageView android:id="@id/withdate_wheel2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="83.0dip" android:layout_marginTop="90.0dip" android:src="@drawable/clock_with_date_wheel2" />
+    <ImageView android:id="@id/withdate_wheel1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="60.0dip" android:layout_marginTop="88.0dip" android:src="@drawable/clock_with_date_wheel1" />
+</FrameLayout>
